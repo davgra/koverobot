@@ -1,0 +1,13 @@
+#ignore hidden files
+.*
+#except .gitignore
+!.gitignore
+#ignore geany project
+*.geany
+*.sublime-*
+
+!.rvmrc
+game_default.yaml
+tmp/
+resources/tmp/
+test/testsave.yaml

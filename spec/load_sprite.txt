@@ -1,0 +1,4 @@
+truckDown0001 = 0 0 150 150
+truckDown0002 = 150 0 150 150
+truckDown0003 = 300 0 150 150
+truckDown0004 = 0 150 150 150
