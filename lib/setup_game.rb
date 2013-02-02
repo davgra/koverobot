@@ -1,36 +1,62 @@
 
 def setup_game(manager)
-  e= manager.create_entity
+  e= manager.create_entity # quit
   manager.add_component(e, CQuit.new({:quit=>Input::KEY_ESCAPE,
     :restart=>Input::KEY_R,
-    :save=>Input::KEY_S }))
+    :save=>Input::KEY_S,
+    :print=>Input::KEY_P }))
+
+  yards = {
+    [1,2]=>{:produce=>:diamonds,:consume=>:rocks},
+    [7,6]=>{:consume=>:diamonds},
+    [2,5]=>{:produce=>:rocks}
+  }
 
   e= manager.create_entity :map
-  manager.add_component(e, CMap.new([10,8]))
+  map = CMap.new([11,8], yards)
+  map[1,1][:fg]=:factory
+  map[8,6][:fg]=:home
+  map[1,5][:fg]=:mine
+  map[5,0][:fg]=:tree
+  map[3,3][:fg]=:tree
+  manager.add_component(e, map)
+
+  yards.each_key do |yard|
+    e= manager.create_entity
+    manager.add_component(e, CPosition.new(yard[0],yard[1]))
+    manager.add_component(e, CText.new("Yard"))
+  end
 
   e= manager.create_entity :settings
-  manager.add_component(e, CSettings.new(0.5))
+  manager.add_component(e, CSettings.new(0.6))
 
-  wagon = sprite_layout(File.join(RESOURCES,"truckSprite.txt"))
-  sprite_size = {:x=>wagon["Left"][0][2],:y=>wagon["Left"][0][3] }
-  direction = %w{Left Up Right Down}
-  sheet = SpriteSheet.new(File.join(RESOURCES,"truckSprite.png"), sprite_size[:x], sprite_size[:y])
-  anim={}
-  direction.each do |dir|
-    anim[dir] = Animation.new
-    list = wagon[dir].map { |e| [e[0]/e[2], e[1]/e[3]] }
-    (0..58).each do |i|
-      pos=list[i]
-      image = sheet.getSubImage(pos[0],pos[1])
-      anim[dir].addFrame(image,67)
-    end
-  end
-  e= manager.create_entity #:robot
-  manager.add_component(e, CSprite.new(anim, "Right"))
-  manager.add_component(e, CPosition.new(3,3))
+  e= manager.create_entity :camera
+  manager.add_component(e, CPosition.new(4,3))
+  manager.add_component(e, CText.new("Camera"))
   manager.add_component(e, CInput.new({:left=>Input::KEY_LEFT,
     :right => Input::KEY_RIGHT,
     :up => Input::KEY_UP,
     :down => Input::KEY_DOWN }))
-  pp manager
+
+  e= manager.create_entity #:robot
+  manager.add_component(e, CSprite.new(:empty, :right))
+  manager.add_component(e, CPosition.new(2,3))
+  manager.add_component(e, CPath.new([]))
+  manager.add_component(e, CTarget.new(3,3,0.001))
+  manager.add_component(e, CLoad.new)
+
+  e= manager.create_entity :wagon1
+  manager.add_component(e, CSprite.new(:empty, :right))
+  manager.add_component(e, CPosition.new(1,3))
+  manager.add_component(e, CPath.new([]))
+  manager.add_component(e, CTarget.new(2,3,0.001))
+  manager.add_component(e, CLoad.new)
+
+  e= manager.create_entity
+  manager.add_component(e, CSprite.new(:empty, :right))
+  manager.add_component(e, CPosition.new(0,3))
+  manager.add_component(e, CPath.new([]))
+  manager.add_component(e, CTarget.new(1,3,0.001))
+  manager.add_component(e, CLoad.new)
 end
+

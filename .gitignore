@@ -2,7 +2,7 @@
 .*
 #except .gitignore
 !.gitignore
-#ignore geany project
+#ignore editor files
 *.geany
 *.sublime-*
 
@@ -10,4 +10,4 @@
 game_default.yaml
 tmp/
 resources/tmp/
-test/testsave.yaml
+spec/tmp

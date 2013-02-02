@@ -7,7 +7,6 @@ require 'lwjgl.jar'
 require 'slick.jar'
 require 'systems.rb'
 require 'entity_manager.rb'
-require 'load_sprite'
 require "setup_game"
 
 RESOURCES = 'res'
@@ -22,20 +21,22 @@ java_import org.newdawn.slick.Input
 #java_import org.newdawn.slick.Graphics
 java_import org.newdawn.slick.Image
 #java_import org.newdawn.slick.SlickException
-#java_import org.newdawn.slick.Color
+java_import org.newdawn.slick.Color
 
 
 class RobotGame < BasicGame
   def init(container)
-
-    manager = EntityManager.new
-    setup_game manager
+    @manager = EntityManager.new
+    setup_game @manager
     @systems=[
-      SystemQuit.new(manager),
-      SystemInput.new(manager),
+      #SystemDebug.new(@manager),
+      SystemQuit.new(@manager),
+      SystemPath.new(@manager),
+      SystemMove.new(@manager),
+      SystemLoader.new(@manager),
+      SystemInput.new(@manager),
     ]
-    @render_system =SystemRender.new(manager)
-    @image = Image.new("res/grass128.jpg")
+    @render_system =SystemRender.new(@manager)
   end
 
   def update(container, delta)
@@ -43,7 +44,6 @@ class RobotGame < BasicGame
   end
 
   def render(container, graphics)
-    @image.draw(100,100)
     @render_system.render(container, graphics)
   end
 end

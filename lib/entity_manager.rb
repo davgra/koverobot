@@ -69,9 +69,7 @@ class EntityManager
   end
   def load(filename)
     parsed = YAML.load(File.open(filename))
-    @componentStores={}
-    @allEntities = []
-    @labledEntities = {}
+    clear
     parsed.each do |e, components|
       components["components"].each do |c|
         @componentStores[c.class]||={}
@@ -81,6 +79,11 @@ class EntityManager
       @lowestUnassignedEntityID = [@lowestUnassignedEntityID, e+1].max
       @allEntities.push e
     end
+  end
+  def clear
+    @componentStores={}
+    @allEntities = []
+    @labledEntities = {}
   end
 end
 
