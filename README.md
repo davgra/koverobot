@@ -28,4 +28,4 @@ supply chain.
 ## Todo
 
 * Robots should select destination based on their cargo.
-
+* Robots should avoid obstacles
