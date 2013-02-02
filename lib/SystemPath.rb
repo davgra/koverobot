@@ -3,19 +3,11 @@ require "find_path"
 class SystemPath < System
   def initialize(x)
     super(x)
-    @time=0
-    @sec = 0
     @wait_list={}
   end
   def process_one_game_tick(container, delta)
-    @time+=delta
     @wait_list.each do |k,v|
       @wait_list[k] = v+delta
-    end
-    if @time>1000
-      @time-=1000
-      @sec+=1
-      #puts "list: #{@wait_list.inspect}"
     end
     @manager.get_all_entities_possessing_component(CPath).each do |e|
       path = @manager.get_component(e, CPath)
