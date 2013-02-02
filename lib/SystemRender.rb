@@ -5,6 +5,7 @@ class SystemRender < System
     super(x)
     @images={
       :grass => Image.new("res/grass128.jpg"),
+      :gravel => Image.new("res/sand.jpg"),
       :factory => Image.new("res/osa_site-factory.png"),
       :home => Image.new("res/osa_site-neighbourhood.png"),
       :mine => Image.new("res/Mine128.png"),
@@ -46,6 +47,9 @@ class SystemRender < System
       graphics.draw_string(text,(pos.x-dx)*TILESIZE,
         (pos.y-dy)*TILESIZE)
     end
+    mx = container.get_input.get_mouse_x/zoom
+    my = container.get_input.get_mouse_y/zoom
+    @images[:gravel].draw(mx,my) if container.get_input.is_mouse_button_down(0)
   end
 end
 

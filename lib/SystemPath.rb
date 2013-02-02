@@ -29,11 +29,14 @@ class SystemPath < System
           start=[pos.x.to_i, pos.y.to_i]
           my_cargo = @manager.get_component(e, CLoad).cargo
           yards = []
-          (map.yards.keys-[start]).each do |yard|
+          @manager.get_all_entities_possessing_component(CYard).each do |y|
+            yard = @manager.get_component(y, CYard)
+            yard_pos = @manager.get_component(y, CPosition)
+            next if [yard_pos.x,yard_pos.y] == start
             if my_cargo
-              yards.push yard if map.yards[yard][:consume] == my_cargo
+              yards.push [yard_pos.x,yard_pos.y] if yard[:consume] == my_cargo
             else
-              yards.push yard if map.yards[yard][:produce]
+              yards.push [yard_pos.x,yard_pos.y] if yard[:produce]
             end
           end
           stop = yards[rand yards.size]

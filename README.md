@@ -28,7 +28,8 @@ supply chain.
 * Robots should move faster on roads
 * Robots should optimise to fastest route
 * Sites should display current stock
-
+* Game should run on Windows (it might already but test it)
+* refactor
 
 ## Changelog
 

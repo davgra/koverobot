@@ -3,19 +3,17 @@ class SystemLoader < System
     @manager.get_all_entities_possessing_component(CLoad).each do |e|
       target = @manager.get_component(e, CTarget)
       map = @manager.get_labled_component(:map, CMap)
+      next unless target.speed == 0 && map.yards.include?([target.x, target.y])
       load = @manager.get_component(e, CLoad)
       sprite = @manager.get_component(e, CSprite)
-      yard = [target.x, target.y]
-      next unless target.speed == 0 && map.yards[yard]
+      yard = @manager.get_labled_component([target.x, target.y],CYard)
       if load.cargo
-        if load.cargo == map.yards[yard][:consume]
-          map.yards[yard][:stock][load.cargo] += 1
+        if load.cargo == yard[:consume]
+          yard[:stock][load.cargo] += 1
           load.cargo=nil
           sprite.animation = :empty
-          produce(map.yards[yard][:stock])
         end
       else
-        yard = map.yards[yard]
         prod = yard[:produce]
         if prod
           if yard[:stock][prod] && yard[:stock][prod] > 0
@@ -25,12 +23,6 @@ class SystemLoader < System
           end
         end
       end
-    end
-  end
-  def produce(stock)
-    if stock[:diamonds] && stock[:rocks] && stock[:rocks] > 5
-      stock[:diamonds] += 1
-      stock[:rocks] -= 5
     end
   end
 end

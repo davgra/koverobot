@@ -34,6 +34,7 @@ class RobotGame < BasicGame
       SystemPath.new(@manager),
       SystemMove.new(@manager),
       SystemLoader.new(@manager),
+      SystemProduce.new(@manager),
       SystemInput.new(@manager),
     ]
     @render_system =SystemRender.new(@manager)

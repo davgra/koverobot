@@ -14,7 +14,7 @@ def setup_game(manager)
   }
 
   e= manager.create_entity :map
-  map = CMap.new([11,8], yards)
+  map = CMap.new([11,8], yards.keys)
   map[1,1][:fg]=:factory
   map[8,6][:fg]=:home
   map[1,5][:fg]=:mine
@@ -24,6 +24,7 @@ def setup_game(manager)
 
   yards.each do |yard, v|
     e= manager.create_entity yard
+    manager.add_component(e, CYard.new(v[:produce],v[:consume],v[:stock]))
     manager.add_component(e, CPosition.new(yard[0],yard[1]))
     manager.add_component(e, CText.new("Yard +#{v[:produce]} -#{v[:consume]}"))
   end

@@ -11,15 +11,4 @@ CText     = Struct.new(:text)
 CPath     = Struct.new(:directions)
 CTarget   = Struct.new(:x,:y,:speed)
 CLoad     = Struct.new(:cargo)
-
-__END__
-CTarget   = Struct.new(:x,:y,:reached,:start_x,:start_y,:distance)
-CSpeed    = Struct.new(:velocity,:direction,:pause)
-
-CSpriteAnimate = Struct.new(:x_array)
-
-CText     = Struct.new(:text)
-CMapItem  = Struct.new(:direction, :occupied)
-CDebug    = Struct.new(:key)
-CImage    = Struct.new(:filename)
-CAddRobot = Struct.new(:key)
+CYard     = Struct.new(:produce, :consume, :stock)
