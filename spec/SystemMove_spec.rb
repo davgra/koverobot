@@ -14,9 +14,9 @@ describe SystemMove do
       @sys=SystemMove.new(@manager)
     end
     it "should move entity" do
-      @sys.process_one_game_tick(nil,1000/50.0)
-      pos=@manager.get_component(1, CPosition)
-      t = @manager.get_component(1, CTarget)
+      @sys.game_tick(nil,1000/50.0)
+      pos=@manager.component(1, CPosition)
+      t = @manager.component(1, CTarget)
       pos.x.should == 1.2
       pos.y.should == 2.0
       t.x.should == 2
@@ -24,26 +24,26 @@ describe SystemMove do
     end
     it "should stop on target" do
       5.times do
-        @sys.process_one_game_tick(nil,20)
+        @sys.game_tick(nil,20)
       end
-      pos=@manager.get_component(1, CPosition)
+      pos=@manager.component(1, CPosition)
       "x: #{pos.x} y: #{pos.y}".should == "x: 2.0 y: 2.0"
     end
     it "should continue after target" do
-        @sys.process_one_game_tick(nil,20)
-      pos=@manager.get_component(1, CPosition)
+        @sys.game_tick(nil,20)
+      pos=@manager.component(1, CPosition)
       "x: #{pos.x} y: #{pos.y}".should == "x: 2.2 y: 2.0"
-      target = @manager.get_component(1, CTarget)
+      target = @manager.component(1, CTarget)
       target.x.should == 3
       target.y.should == 2
     end
     it "should target" do
       25.times do
-        @sys.process_one_game_tick(nil,20)
+        @sys.game_tick(nil,20)
       end
-      pos=@manager.get_component(1, CPosition)
+      pos=@manager.component(1, CPosition)
       "x: #{pos.x} y: #{pos.y}".should == "x: 2.0 y: 3.0"
-      sprite = @manager.get_component(1,CSprite)
+      sprite = @manager.component(1,CSprite)
       sprite.direction.should == :stop_up
     end
   end

@@ -8,8 +8,8 @@ class System
   def initialize(manager)
     @manager = manager
   end
-  def process_one_game_tick
-    raise RuntimeError, "systems must override process_one_game_tick()"
+  def game_tick
+    raise RuntimeError, "systems must override game_tick()"
   end
 end
 

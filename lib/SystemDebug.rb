@@ -5,7 +5,7 @@ class SystemDebug < System
     @timestamps = {}
     @delay = 0
   end
-  def process_one_game_tick(container,delta)
+  def game_tick(container,delta)
     @delay += delta
     if @delay > 1000
       @delay-=1000
@@ -26,8 +26,8 @@ class SystemDebug < System
       end
     end
 
-    #@manager.get_all_entities_possessing_component(CInput).each do |e|
-    #  pos = @manager.get_component(e,CPosition)
+    #@manager.entities(CInput).each do |e|
+    #  pos = @manager.component(e,CPosition)
     #  pos.x += 0.01
     #end
   end

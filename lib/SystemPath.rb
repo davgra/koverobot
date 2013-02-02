@@ -5,26 +5,26 @@ class SystemPath < System
     super(x)
     @wait_list={}
   end
-  def process_one_game_tick(container, delta)
+  def game_tick(container, delta)
     @wait_list.each do |k,v|
       @wait_list[k] = v+delta
     end
-    @manager.get_all_entities_possessing_component(CPath).each do |e|
-      path = @manager.get_component(e, CPath)
+    @manager.entities(CPath).each do |e|
+      path = @manager.component(e, CPath)
       next unless path.directions.empty?
-      target = @manager.get_component(e, CTarget)
+      target = @manager.component(e, CTarget)
       next unless target.speed == 0
       if @wait_list[e]
         if @wait_list[e] > 500
           @wait_list.delete(e)
-          pos =  @manager.get_component(e, CPosition)
-          map = @manager.get_labled_component(:map, CMap)
+          pos =  @manager.component(e, CPosition)
+          map = @manager.labled_component(:map, CMap)
           start=[pos.x.to_i, pos.y.to_i]
-          my_cargo = @manager.get_component(e, CLoad).cargo
+          my_cargo = @manager.component(e, CLoad).cargo
           yards = []
-          @manager.get_all_entities_possessing_component(CYard).each do |y|
-            yard = @manager.get_component(y, CYard)
-            yard_pos = @manager.get_component(y, CPosition)
+          @manager.entities(CYard).each do |y|
+            yard = @manager.component(y, CYard)
+            yard_pos = @manager.component(y, CPosition)
             next if [yard_pos.x,yard_pos.y] == start
             if my_cargo
               yards.push [yard_pos.x,yard_pos.y] if yard[:consume].include?(my_cargo)

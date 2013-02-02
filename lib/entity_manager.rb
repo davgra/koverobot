@@ -8,7 +8,7 @@ class EntityManager
     @componentStores = {}
     load(filename) if filename
   end
-  def get_component(entity, componentType)
+  def component(entity, componentType)
     store = @componentStores[componentType]
     raise "GET FAIL: there are no entities with a Component of class: "+
     componentType.to_s unless store
@@ -17,16 +17,16 @@ class EntityManager
     "   missing: "+componentType.to_s unless result
     result
   end
-  def get_labled_component(label, componentType)
+  def labled_component(label, componentType)
     raise "GET LABLED FAIL: no entity labled: #{label}" unless @labledEntities[label]
-    get_component(@labledEntities[label], componentType)
+    component(@labledEntities[label], componentType)
   end
   def get_all_components_of_type(componentType)
     store = @componentStores[componentType]
     return [] unless store
     store.values
   end
-  def get_all_entities_possessing_component(componentType)
+  def entities(componentType)
     store = @componentStores[componentType]
     return [] unless store
     store.keys
@@ -109,7 +109,7 @@ if __FILE__==$0
   #pp manager2
   raise "ERROR save/load" unless manager.to_yaml == manager2.to_yaml
 
-  pl = manager2.get_labled_component(:player,CPosition)
+  pl = manager2.labled_component(:player,CPosition)
   pl.x=22
 
   pp manager2

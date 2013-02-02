@@ -38,7 +38,7 @@ class RobotGame < BasicGame
   end
 
   def update(container, delta)
-    @systems.each { |s| s.process_one_game_tick(container,delta) }
+    @systems.each { |s| s.game_tick(container,delta) }
   end
 
   def render(container, graphics)

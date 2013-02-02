@@ -20,31 +20,31 @@ class SystemRender < System
     }
   end
   def render(container, graphics)
-    zoom = @manager.get_labled_component(:settings, CSettings).zoom
-    cam =  @manager.get_labled_component(:camera, CPosition)
+    zoom = @manager.labled_component(:settings, CSettings).zoom
+    cam =  @manager.labled_component(:camera, CPosition)
     dx = cam.x-4
     dy = cam.y-3
     graphics.scale(zoom,zoom)
     graphics.setBackground(@bg_color)
-    map = @manager.get_labled_component(:map, CMap)
+    map = @manager.labled_component(:map, CMap)
     # render images
     map.keys.each do |x,y|
       @images[map[x,y][:bg]].draw((x-dx)*TILESIZE, (y-dy)*TILESIZE) if map[x,y][:bg]
       @images[map[x,y][:fg]].draw((x-dx)*TILESIZE, (y-dy)*TILESIZE) if map[x,y][:fg]
     end
     # render sprites
-    @manager.get_all_entities_possessing_component(CSprite).each do |e|
-      sprite= @manager.get_component(e,CSprite)
-      pos =   @manager.get_component(e,CPosition)
+    @manager.entities(CSprite).each do |e|
+      sprite= @manager.component(e,CSprite)
+      pos =   @manager.component(e,CPosition)
       if @animation[sprite.animation][sprite.direction]
         @animation[sprite.animation][sprite.direction].draw((pos.x-dx)*TILESIZE,
           (pos.y-dy)*TILESIZE)
       end
     end
     # render texts
-    @manager.get_all_entities_possessing_component(CText).each do |e|
-      text = @manager.get_component(e,CText).text
-      pos =  @manager.get_component(e,CPosition)
+    @manager.entities(CText).each do |e|
+      text = @manager.component(e,CText).text
+      pos =  @manager.component(e,CPosition)
       graphics.draw_string(text,(pos.x-dx)*TILESIZE,
         (pos.y-dy)*TILESIZE)
     end

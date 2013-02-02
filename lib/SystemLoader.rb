@@ -1,12 +1,12 @@
 class SystemLoader < System
-  def process_one_game_tick(container, delta)
-    @manager.get_all_entities_possessing_component(CLoad).each do |e|
-      target = @manager.get_component(e, CTarget)
-      map = @manager.get_labled_component(:map, CMap)
+  def game_tick(container, delta)
+    @manager.entities(CLoad).each do |e|
+      target = @manager.component(e, CTarget)
+      map = @manager.labled_component(:map, CMap)
       next unless target.speed == 0 && map.yards.include?([target.x, target.y])
-      load = @manager.get_component(e, CLoad)
-      sprite = @manager.get_component(e, CSprite)
-      yard = @manager.get_labled_component([target.x, target.y],CYard)
+      load = @manager.component(e, CLoad)
+      sprite = @manager.component(e, CSprite)
+      yard = @manager.labled_component([target.x, target.y],CYard)
       if load.cargo
         if yard[:consume].include?(load.cargo)
           yard[:stock][load.cargo] += 1

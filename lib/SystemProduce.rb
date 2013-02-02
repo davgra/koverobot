@@ -3,14 +3,14 @@ class SystemProduce < System
     super(x)
     @wait_time={}
   end
-  def process_one_game_tick(container, delta)
+  def game_tick(container, delta)
     @wait_time.each do |k,v|
       @wait_time[k] = v+delta
     end
-    @manager.get_all_entities_possessing_component(CYard).each do |e|
-      yard = @manager.get_component(e, CYard)
+    @manager.entities(CYard).each do |e|
+      yard = @manager.component(e, CYard)
       stock = yard.stock
-      text = @manager.get_component(e, CText)
+      text = @manager.component(e, CText)
       if stock[:diamonds] &&
             stock[:rocks] && stock[:rocks] >= 5 &&
             stock[:logs] && stock[:logs] >=7

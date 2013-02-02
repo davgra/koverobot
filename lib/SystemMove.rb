@@ -1,10 +1,10 @@
 
 class SystemMove < System
-  def process_one_game_tick(container,delta)
-    @manager.get_all_entities_possessing_component(CTarget).each do |e|
-      target = @manager.get_component(e, CTarget)
-      pos = @manager.get_component(e, CPosition)
-      map = @manager.get_labled_component(:map, CMap)
+  def game_tick(container,delta)
+    @manager.entities(CTarget).each do |e|
+      target = @manager.component(e, CTarget)
+      pos = @manager.component(e, CPosition)
+      map = @manager.labled_component(:map, CMap)
       groundtype = map[pos.x.to_i,pos.y.to_i][:bg]
       resistance = Hash[:grass, 1, :gravel, 1.5]
       dx = target.x-pos.x
@@ -13,8 +13,8 @@ class SystemMove < System
       move = target.speed*delta*resistance[groundtype]
       move *= 5 if container.get_input.is_key_down(Input::KEY_SPACE)
       if r < move
-        dirs = @manager.get_component(e, CPath).directions
-        sprite = @manager.get_component(e, CSprite)
+        dirs = @manager.component(e, CPath).directions
+        sprite = @manager.component(e, CSprite)
         if dirs.empty?
           target.speed = 0
           sprite.direction = ("stop_"+sprite.direction.to_s).to_sym
