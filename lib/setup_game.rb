@@ -4,6 +4,7 @@ def setup_game(manager)
   manager.add_component(e, CQuit.new({:quit=>Input::KEY_ESCAPE,
     :restart=>Input::KEY_R,
     :save=>Input::KEY_S,
+    :load=>Input::KEY_L,
     :print=>Input::KEY_P }))
 
   yards = {
