@@ -24,7 +24,6 @@ supply chain.
 ## Todo
 
 * Robots should avoid obstacles
-* Robots should move faster on roads
 * Robots should optimise to fastest route
 * Sites should display current stock
 * Game should run on Windows (it might already but test it)
@@ -33,6 +32,9 @@ supply chain.
 
 
 ## Changelog
+
+### 2/2 16:50
+* Robots move faster on roads
 
 ### 2/2 16:15
 * Player kan now build roads

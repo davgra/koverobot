@@ -4,10 +4,13 @@ class SystemMove < System
     @manager.get_all_entities_possessing_component(CTarget).each do |e|
       target = @manager.get_component(e, CTarget)
       pos = @manager.get_component(e, CPosition)
+      map = @manager.get_labled_component(:map, CMap)
+      groundtype = map[pos.x.to_i,pos.y.to_i][:bg]
+      resistance = Hash[:grass, 1, :gravel, 1.5]
       dx = target.x-pos.x
       dy = target.y-pos.y
       r,t = r2p(dx,dy)
-      move = target.speed*delta
+      move = target.speed*delta*resistance[groundtype]
       if r < move
         dirs = @manager.get_component(e, CPath).directions
         sprite = @manager.get_component(e, CSprite)
