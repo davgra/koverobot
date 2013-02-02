@@ -24,8 +24,8 @@ supply chain.
 ## Changelog
 
 * The robots travel randomly between sites, transporing goods
+* Robots selects destination based on their cargo.
 
 ## Todo
 
-* Robots should select destination based on their cargo.
 * Robots should avoid obstacles

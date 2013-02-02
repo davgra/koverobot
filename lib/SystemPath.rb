@@ -19,22 +19,29 @@ class SystemPath < System
     end
     @manager.get_all_entities_possessing_component(CPath).each do |e|
       path = @manager.get_component(e, CPath)
-      if path.directions.empty?
-        if @wait_list[e]
-          if @wait_list[e] > 3000
-            @wait_list.delete(e)
-            pos =  @manager.get_component(e, CPosition)
-            map = @manager.get_labled_component(:map, CMap)
-            target = @manager.get_component(e, CTarget)
-            start=[pos.x.to_i, pos.y.to_i]
-            yards = map.yards.keys-[start]
-            stop = yards[rand yards.size]
-            path.directions = find_path(start,stop)
-            target.speed = 0.0009+0.0001*rand(2)
+      next unless path.directions.empty?
+      if @wait_list[e]
+        if @wait_list[e] > 3000
+          @wait_list.delete(e)
+          pos =  @manager.get_component(e, CPosition)
+          map = @manager.get_labled_component(:map, CMap)
+          target = @manager.get_component(e, CTarget)
+          start=[pos.x.to_i, pos.y.to_i]
+          my_cargo = @manager.get_component(e, CLoad).cargo
+          yards = []
+          (map.yards.keys-[start]).each do |yard|
+            if my_cargo
+              yards.push yard if map.yards[yard][:consume] == my_cargo
+            else
+              yards.push yard if map.yards[yard][:produce]
+            end
           end
-        else
-          @wait_list[e] = 0
+          stop = yards[rand yards.size]
+          path.directions = find_path(start,stop)
+          target.speed = 0.0009+0.0001*rand(2)
         end
+      else
+        @wait_list[e] = 0
       end
     end
   end
