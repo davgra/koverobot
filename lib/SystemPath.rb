@@ -20,12 +20,13 @@ class SystemPath < System
     @manager.get_all_entities_possessing_component(CPath).each do |e|
       path = @manager.get_component(e, CPath)
       next unless path.directions.empty?
+      target = @manager.get_component(e, CTarget)
+      next unless target.speed == 0
       if @wait_list[e]
-        if @wait_list[e] > 3000
+        if @wait_list[e] > 500
           @wait_list.delete(e)
           pos =  @manager.get_component(e, CPosition)
           map = @manager.get_labled_component(:map, CMap)
-          target = @manager.get_component(e, CTarget)
           start=[pos.x.to_i, pos.y.to_i]
           my_cargo = @manager.get_component(e, CLoad).cargo
           yards = []

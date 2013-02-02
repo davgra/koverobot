@@ -27,20 +27,21 @@ class SystemRender < System
     graphics.scale(zoom,zoom)
     graphics.setBackground(@bg_color)
     map = @manager.get_labled_component(:map, CMap)
+    # render images
     map.keys.each do |x,y|
       @images[map[x,y][:bg]].draw((x-dx)*TILESIZE, (y-dy)*TILESIZE) if map[x,y][:bg]
       @images[map[x,y][:fg]].draw((x-dx)*TILESIZE, (y-dy)*TILESIZE) if map[x,y][:fg]
     end
+    # render sprites
     @manager.get_all_entities_possessing_component(CSprite).each do |e|
       sprite= @manager.get_component(e,CSprite)
       pos =   @manager.get_component(e,CPosition)
       if @animation[sprite.animation][sprite.direction]
         @animation[sprite.animation][sprite.direction].draw((pos.x-dx)*TILESIZE,
           (pos.y-dy)*TILESIZE)
-      else
-        puts "sprite.direction: #{sprite.direction} (#{e})"
       end
     end
+    # render texts
     @manager.get_all_entities_possessing_component(CText).each do |e|
       text = @manager.get_component(e,CText).text
       pos =  @manager.get_component(e,CPosition)

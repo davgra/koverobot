@@ -8,4 +8,4 @@ def find_path(from, to)
   path
 end
 
-system "rspec ../../spec/#{File.basename $0,'.rb'}_spec.rb" if __FILE__ == $0
+system "rspec ../spec/#{File.basename $0,'.rb'}_spec.rb" if __FILE__ == $0
