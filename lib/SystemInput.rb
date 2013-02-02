@@ -9,6 +9,8 @@ class SystemInput < System
       if input.is_key_down(Input::KEY_LCONTROL)
         settings.zoom += 0.1 if input.is_key_pressed(keys[:up])
         settings.zoom -= 0.1 if input.is_key_pressed(keys[:down])
+        settings.zoom = 0.1 if settings.zoom  < 0.1
+        settings.zoom = 2 if settings.zoom  > 2
       else
         camera.x -=0.03/settings.zoom if input.is_key_down(keys[:left])
         camera.x +=0.03/settings.zoom if input.is_key_down(keys[:right])

@@ -27,12 +27,14 @@ supply chain.
 * Robots should optimise to fastest route
 * Game should run on Windows (it might already but test it)
 * refactor
-* set limits on zoom
 * sites should produce on given producerate
 * collision detection
 
 
 ## Changelog
+
+### 2/2 20:50
+* set limits on zoom
 
 ### 2/2 18:10
 * added logs produser
