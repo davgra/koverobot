@@ -11,7 +11,7 @@ def setup_game(manager)
     [1,2]=>{:produce=>:diamonds,:consume=>[:rocks, :logs], :stock=>{:diamonds=>20,:rocks=>0, :logs=>0}},
     [7,6]=>{:consume=>[:diamonds], :stock=>{:diamonds=>0}},
     [2,5]=>{:produce=>:rocks, :consume=>[], :stock=>{:rocks=>50}},
-    [6,0]=>{:produce=>:logs, :consume=>[], :stock=>{:logs=>2}},
+    [6,0]=>{:produce=>:logs, :consume=>[], :stock=>{:logs=>70}},
   }
 
   e= manager.create_entity :map

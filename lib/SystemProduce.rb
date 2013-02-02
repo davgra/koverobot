@@ -4,7 +4,9 @@ class SystemProduce < System
       yard = @manager.get_component(e, CYard)
       stock = yard.stock
       text = @manager.get_component(e, CText)
-      if stock[:diamonds] && stock[:rocks] && stock[:rocks] >= 5
+      if stock[:diamonds] &&
+            stock[:rocks] && stock[:rocks] >= 5 &&
+            stock[:logs] && stock[:logs] >=7
         stock[:diamonds] += 1
         stock[:rocks] -= 5
       end

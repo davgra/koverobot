@@ -40,7 +40,6 @@ class SystemPath < System
             end
           end
           stop = yards[rand yards.size]
-          puts "find_path(#{start},#{stop})"
           path.directions = find_path(start,stop)
           target.speed = 0.0009+0.0001*rand(2)
         end
