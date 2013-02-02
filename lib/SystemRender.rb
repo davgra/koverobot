@@ -47,9 +47,6 @@ class SystemRender < System
       graphics.draw_string(text,(pos.x-dx)*TILESIZE,
         (pos.y-dy)*TILESIZE)
     end
-    mx = container.get_input.get_mouse_x/zoom
-    my = container.get_input.get_mouse_y/zoom
-    @images[:gravel].draw(mx,my) if container.get_input.is_mouse_button_down(0)
   end
 end
 

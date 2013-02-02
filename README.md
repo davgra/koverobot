@@ -24,20 +24,24 @@ supply chain.
 ## Todo
 
 * Robots should avoid obstacles
-* Player should be able to build roads
 * Robots should move faster on roads
 * Robots should optimise to fastest route
 * Sites should display current stock
 * Game should run on Windows (it might already but test it)
 * refactor
+* set limits on zoom
+
 
 ## Changelog
 
+### 2/2 16:15
+* Player kan now build roads
+
 ### 2/2 12:00
-* Sites should produce based on income
+* Sites produces based on income
 
 ### 2/2 10:10
-* Sites should keep stock of goods
+* Sites keep stock of goods
 
 ### 2/2 8:00
 * Robots selects destination based on their cargo.

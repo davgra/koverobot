@@ -13,6 +13,7 @@ class CMap
     end
   end
   def [](x,y)
+    puts "error map[#{x},#{y}]" && return unless @map[x] && @map[x][y]
     @map[x][y]
   end
   def keys
