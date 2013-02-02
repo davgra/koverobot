@@ -41,25 +41,14 @@ def setup_game(manager)
     :up => Input::KEY_UP,
     :down => Input::KEY_DOWN }))
 
-  e= manager.create_entity #:robot
-  manager.add_component(e, CSprite.new(:empty, :right))
-  manager.add_component(e, CPosition.new(2,3))
-  manager.add_component(e, CPath.new([]))
-  manager.add_component(e, CTarget.new(3,3,0.001))
-  manager.add_component(e, CLoad.new)
+  [[2,3],[9,3],[4,7]].each do |x,y|
+    e= manager.create_entity #:robot
+    manager.add_component(e, CSprite.new(:empty, :right))
+    manager.add_component(e, CPosition.new(x,y))
+    manager.add_component(e, CPath.new([]))
+    manager.add_component(e, CTarget.new(x,y,0))
+    manager.add_component(e, CLoad.new)
+  end
 
-  e= manager.create_entity #:wagon1
-  manager.add_component(e, CSprite.new(:empty, :right))
-  manager.add_component(e, CPosition.new(1,3))
-  manager.add_component(e, CPath.new([]))
-  manager.add_component(e, CTarget.new(2,3,0.001))
-  manager.add_component(e, CLoad.new)
-
-  e= manager.create_entity
-  manager.add_component(e, CSprite.new(:empty, :right))
-  manager.add_component(e, CPosition.new(0,3))
-  manager.add_component(e, CPath.new([]))
-  manager.add_component(e, CTarget.new(1,3,0.001))
-  manager.add_component(e, CLoad.new)
 end
 

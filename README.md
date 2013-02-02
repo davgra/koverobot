@@ -29,6 +29,7 @@ supply chain.
 * refactor
 * set limits on zoom
 * sites should produce on given producerate
+* collision detection
 
 
 ## Changelog
