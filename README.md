@@ -32,6 +32,9 @@ supply chain.
 
 ## Changelog
 
+### 2/2 12:00
+* Sites should produce based on income
+
 ### 2/2 10:10
 * Sites should keep stock of goods
 

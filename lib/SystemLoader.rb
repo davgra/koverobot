@@ -12,6 +12,7 @@ class SystemLoader < System
           map.yards[yard][:stock][load.cargo] += 1
           load.cargo=nil
           sprite.animation = :empty
+          produce(map.yards[yard][:stock])
         end
       else
         yard = map.yards[yard]
@@ -24,6 +25,12 @@ class SystemLoader < System
           end
         end
       end
+    end
+  end
+  def produce(stock)
+    if stock[:diamonds] && stock[:rocks] && stock[:rocks] > 5
+      stock[:diamonds] += 1
+      stock[:rocks] -= 5
     end
   end
 end

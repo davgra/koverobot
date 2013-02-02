@@ -8,9 +8,9 @@ def setup_game(manager)
     :print=>Input::KEY_P }))
 
   yards = {
-    [1,2]=>{:produce=>:diamonds,:consume=>:rocks},
-    [7,6]=>{:consume=>:diamonds},
-    [2,5]=>{:produce=>:rocks}
+    [1,2]=>{:produce=>:diamonds,:consume=>:rocks, :stock=>{:diamonds=>20,:rocks=>0}},
+    [7,6]=>{:consume=>:diamonds, :stock=>{:diamonds=>0}},
+    [2,5]=>{:produce=>:rocks, :stock=>{:rocks=>50}}
   }
 
   e= manager.create_entity :map
@@ -22,10 +22,10 @@ def setup_game(manager)
   map[3,3][:fg]=:tree
   manager.add_component(e, map)
 
-  yards.each_key do |yard|
-    e= manager.create_entity
+  yards.each do |yard, v|
+    e= manager.create_entity yard
     manager.add_component(e, CPosition.new(yard[0],yard[1]))
-    manager.add_component(e, CText.new("Yard"))
+    manager.add_component(e, CText.new("Yard +#{v[:produce]} -#{v[:consume]}"))
   end
 
   e= manager.create_entity :settings
@@ -46,7 +46,7 @@ def setup_game(manager)
   manager.add_component(e, CTarget.new(3,3,0.001))
   manager.add_component(e, CLoad.new)
 
-  e= manager.create_entity :wagon1
+  e= manager.create_entity #:wagon1
   manager.add_component(e, CSprite.new(:empty, :right))
   manager.add_component(e, CPosition.new(1,3))
   manager.add_component(e, CPath.new([]))
