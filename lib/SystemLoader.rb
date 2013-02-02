@@ -8,7 +8,7 @@ class SystemLoader < System
       sprite = @manager.get_component(e, CSprite)
       yard = @manager.get_labled_component([target.x, target.y],CYard)
       if load.cargo
-        if load.cargo == yard[:consume]
+        if yard[:consume].include?(load.cargo)
           yard[:stock][load.cargo] += 1
           load.cargo=nil
           sprite.animation = :empty

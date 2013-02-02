@@ -8,9 +8,10 @@ def setup_game(manager)
     :print=>Input::KEY_P }))
 
   yards = {
-    [1,2]=>{:produce=>:diamonds,:consume=>:rocks, :stock=>{:diamonds=>20,:rocks=>0}},
-    [7,6]=>{:consume=>:diamonds, :stock=>{:diamonds=>0}},
-    [2,5]=>{:produce=>:rocks, :stock=>{:rocks=>50}}
+    [1,2]=>{:produce=>:diamonds,:consume=>[:rocks, :logs], :stock=>{:diamonds=>20,:rocks=>0, :logs=>0}},
+    [7,6]=>{:consume=>[:diamonds], :stock=>{:diamonds=>0}},
+    [2,5]=>{:produce=>:rocks, :consume=>[], :stock=>{:rocks=>50}},
+    [6,0]=>{:produce=>:logs, :consume=>[], :stock=>{:logs=>2}},
   }
 
   e= manager.create_entity :map

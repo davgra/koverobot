@@ -33,6 +33,9 @@ supply chain.
 
 ## Changelog
 
+### 2/2 18:10
+* added logs produser
+
 ### 2/2 17:20
 * Sites should display current stock
 

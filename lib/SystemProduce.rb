@@ -8,9 +8,11 @@ class SystemProduce < System
         stock[:diamonds] += 1
         stock[:rocks] -= 5
       end
-      prod = "#{yard.produce}:#{stock[yard.produce]}"
-      cons = "#{yard.consume}:#{stock[yard.consume]}"
-      text.text = "#{prod}\n#{cons}"
+      str = "#{yard.produce}:#{stock[yard.produce]}"
+      yard.consume.each do |c|
+        str += "\n#{c}:#{stock[c]}"
+      end
+      text.text = str
     end
   end
 end

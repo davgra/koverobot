@@ -34,12 +34,13 @@ class SystemPath < System
             yard_pos = @manager.get_component(y, CPosition)
             next if [yard_pos.x,yard_pos.y] == start
             if my_cargo
-              yards.push [yard_pos.x,yard_pos.y] if yard[:consume] == my_cargo
+              yards.push [yard_pos.x,yard_pos.y] if yard[:consume].include?(my_cargo)
             else
               yards.push [yard_pos.x,yard_pos.y] if yard[:produce]
             end
           end
           stop = yards[rand yards.size]
+          puts "find_path(#{start},#{stop})"
           path.directions = find_path(start,stop)
           target.speed = 0.0009+0.0001*rand(2)
         end
