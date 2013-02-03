@@ -27,9 +27,11 @@ supply chain.
 * refactor
 * collision detection
 
-* Robots should optimise to fastest route
 
 ## Changelog
+
+### 3/2 14:00
+* Robots takes fastest route
 
 ### 3/2 11:10
 * Path optimiser

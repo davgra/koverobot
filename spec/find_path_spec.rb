@@ -75,7 +75,7 @@ describe "find_path(from, to, map)" do
            7=>{:bg=>:grass}},
          2=>
           {0=>{:bg=>:grass},
-           1=>{:bg=>:grass},
+           1=>{:bg=>:gravel},
            2=>{:bg=>:grass},
            3=>{:bg=>:grass},
            4=>{:bg=>:grass},

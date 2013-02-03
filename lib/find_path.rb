@@ -1,60 +1,52 @@
 
-def find_path(from, to, map=nil)
+def find_path(from, to, map=nil, speeds=nil)
   if map
     m={}
     map.each_key do |x|
       map[x].each_key do |y|
         m[y]||={}
-        m[y][x] = [1  ,100]
-        m[y][x] = [1.5,100] if map[x][y][:bg] == :gravel
-        m[y][x] = [0  ,111] if map[x][y][:fg]
+        m[y][x] = [1    ,100]
+        m[y][x] = [1/1.5,100] if map[x][y][:bg] == :gravel
+        m[y][x] = [0    ,111] if map[x][y][:fg]
       end
     end
     m[to[1]][to[0]] = [1,0]
 
-    l=[to]
-    i=0
-    j=0
-    #while i<90 do
-    while i<90 do
-      check=l
+    check=[to]
+    while check.size>0 do
       check.size.times do |k|
         c=check.shift
-        check.push add(c,[-1,0])
-        check.push add(c,[+1,0])
-        check.push add(c,[0,+1])
-        check.push add(c,[0,-1])
-      end
-      l=[]
-      check.each do |x,y|
-        if m[y] && m[y][x] && m[y][x][0]>0 && m[y][x][1]>i+1
-          l.push [x,y]
-          m[y][x][1]=i+1
-          j=i && i = 98 if [x,y] == from
+        i=m[c[1]][c[0]][1]
+        t=m[c[1]][c[0]][0]
+        [[-1,0], [+1,0], [0,+1], [0,-1], ].each do |p|
+          x,y = add(c,p)
+          if m[y] && m[y][x] && m[y][x][0]>0 && m[y][x][1]>i+m[y][x][0]
+            check.push [x,y]
+            m[y][x][1]=i+m[y][x][0]
+            #break if [x,y] == from
+          end
         end
+        #break if check[-1] == from
       end
-      i = i+1
+      #break if check[-1] == from
     end
     #print_m(m)
     l=[]
-    p=from
-    #j=9
-    while j>0 do
+    n=[[-1,0,:left],[1,0,:right],[0,-1,:up],[0,1,:down]]
+    p = from
+    while true do
       x,y=p
-      if m[y] && m[y][x+1] && m[y][x+1][1]==j-1
-        l.push :right
-        p=add(p,[1,0])
-      elsif m[y] && m[y][x-1] && m[y][x-1][1]==j-1
-        l.push :left
-        p=add(p,[-1,0])
-      elsif m[y+1] && m[y+1][x] && m[y+1][x][1]==j-1
-        l.push :down
-        p=add(p,[0,1])
-      elsif m[y-1] && m[y-1][x] && m[y-1][x][1]==j-1
-        l.push :up
-        p=add(p,[0,-1])
+      j = m[y][x][1]
+      possible=[]
+      n.each do |dx,dy,dir|
+        if m[y+dy] && m[y+dy][x+dx] && m[y+dy][x+dx][1] < 100
+          possible.push [m[y+dy][x+dx][1],dx,dy,dir]
+        end
       end
-      j-=1
+      max,dx,dy,dir = possible.min
+      l.push dir
+      p=add(p,[dx,dy])
+      break if p == to
     end
     l
   else
@@ -72,7 +64,17 @@ def add(l1, l2)
 end
 
 def print_m(m)
-    m.each_key{|y| m[y].each{|x,e| print e[0]>0 ? (e[1]<100 ? ("%2s"%e[1]) : " _") : " x" }; puts ""}
+    m.each_key do |y|
+      m[y].each do |x,e|
+        if e[0]>0
+          print e[1]<100 ? ("%4s"%e[1]) : "   _"
+        else
+          print "   x"
+        end
+      end
+      puts ""
+    end
+    puts ""
 end
 
 system "rspec ../spec/#{File.basename $0,'.rb'}_spec.rb" if __FILE__ == $0

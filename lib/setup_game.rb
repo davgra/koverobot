@@ -25,7 +25,7 @@ def setup_game(manager)
   map[8,6][:fg]=:home
   map[1,5][:fg]=:mine
   map[5,0][:fg]=:tree
-  map[3,3][:fg]=:tree
+  map[3,4][:fg]=:tree
   manager.add_component(e, map)
 
   yards.each do |yard, v|
