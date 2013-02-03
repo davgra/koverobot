@@ -6,7 +6,7 @@ class SystemMove < System
       pos = @manager.component(e, CPosition)
       map = @manager.labled_component(:map, CMap)
       groundtype = map[pos.x.to_i,pos.y.to_i][:bg]
-      resistance = Hash[:grass, 1, :gravel, 1.5]
+      resistance = Hash[:grass, 0.3, :gravel, 1.5]
       dx = target.x-pos.x
       dy = target.y-pos.y
       r,t = r2p(dx,dy)

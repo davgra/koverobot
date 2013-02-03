@@ -5,7 +5,7 @@ def find_path(from, to, map=nil, speeds=nil)
     map.each_key do |x|
       map[x].each_key do |y|
         m[y]||={}
-        m[y][x] = [1    ,100]
+        m[y][x] = [1/0.3,100]
         m[y][x] = [1/1.5,100] if map[x][y][:bg] == :gravel
         m[y][x] = [0    ,111] if map[x][y][:fg]
       end
