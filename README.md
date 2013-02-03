@@ -21,6 +21,19 @@ transporting goods. It's your mission, if you accept the challenge, to
 build roads so that the robots can travel fast enough to satify the
 supply chain.
 
+### Keys
+
+These are the keys to use:
+
+* left mousebutton to place road
+* right mousebutton to remove road
+* arrowkeys to pan
+* ctrl up/down to zoom
+* esc to quit
+* r to restart
+* s to save
+* l to load
+
 ## Todo
 
 * Game should run on Windows (it might already but test it)
