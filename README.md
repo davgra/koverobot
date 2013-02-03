@@ -18,7 +18,7 @@ unless you use rvm, in which case you just run:
 In the game world there is a number of factories and cities. These
 produce and/or consume commodities. There is a number of robot vehicles
 transporting goods. It's your mission, if you accept the challenge, to
-build roads so that the robots can travel fast enough to satify the
+build roads so that the robots can travel fast enough to satisfy the
 supply chain.
 
 ### Keys
