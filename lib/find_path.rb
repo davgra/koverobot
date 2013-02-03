@@ -23,18 +23,15 @@ def find_path(from, to, map=nil, speeds=nil)
           if m[y] && m[y][x] && m[y][x][0]>0 && m[y][x][1]>i+m[y][x][0]
             check.push [x,y]
             m[y][x][1]=i+m[y][x][0]
-            #break if [x,y] == from
           end
         end
-        #break if check[-1] == from
       end
-      #break if check[-1] == from
     end
-    #print_m(m)
+#    print_m(m)
     l=[]
     n=[[-1,0,:left],[1,0,:right],[0,-1,:up],[0,1,:down]]
     p = from
-    while true do
+    loop do
       x,y=p
       j = m[y][x][1]
       possible=[]
@@ -59,15 +56,19 @@ def find_path(from, to, map=nil, speeds=nil)
   end
 end
 
+
+
 def add(l1, l2)
   [l1[0]+l2[0],l1[1]+l2[1]]
 end
+
+
 
 def print_m(m)
     m.each_key do |y|
       m[y].each do |x,e|
         if e[0]>0
-          print e[1]<100 ? ("%4s"%e[1]) : "   _"
+          print e[1]<100 ? ("%4.1f"%e[1]) : "   _"
         else
           print "   x"
         end

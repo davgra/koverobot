@@ -68,16 +68,16 @@ describe "find_path(from, to, map)" do
           {0=>{:bg=>:grass},
            1=>{:bg=>:grass, :fg=>:factory},
            2=>{:bg=>:grass},
-           3=>{:bg=>:grass},
+           3=>{:bg=>:gravel},
            4=>{:bg=>:grass},
            5=>{:bg=>:grass, :fg=>:mine},
            6=>{:bg=>:grass},
            7=>{:bg=>:grass}},
          2=>
           {0=>{:bg=>:grass},
-           1=>{:bg=>:gravel},
+           1=>{:bg=>:grass},
            2=>{:bg=>:grass},
-           3=>{:bg=>:grass},
+           3=>{:bg=>:gravel},
            4=>{:bg=>:grass},
            5=>{:bg=>:grass},
            6=>{:bg=>:grass},
@@ -86,7 +86,7 @@ describe "find_path(from, to, map)" do
           {0=>{:bg=>:grass},
            1=>{:bg=>:grass},
            2=>{:bg=>:grass},
-           3=>{:bg=>:grass, :fg=>:tree},
+           3=>{:bg=>:gravel},
            4=>{:bg=>:grass},
            5=>{:bg=>:grass},
            6=>{:bg=>:grass},
@@ -95,25 +95,25 @@ describe "find_path(from, to, map)" do
           {0=>{:bg=>:grass},
            1=>{:bg=>:grass},
            2=>{:bg=>:grass},
-           3=>{:bg=>:grass},
+           3=>{:bg=>:gravel},
            4=>{:bg=>:grass},
            5=>{:bg=>:grass},
            6=>{:bg=>:grass},
            7=>{:bg=>:grass}},
          5=>
-          {0=>{:bg=>:grass, :fg=>:tree},
+          {0=>{:bg=>:grass},
            1=>{:bg=>:grass},
            2=>{:bg=>:grass},
-           3=>{:bg=>:grass},
+           3=>{:bg=>:gravel},
            4=>{:bg=>:grass},
            5=>{:bg=>:grass},
            6=>{:bg=>:grass},
            7=>{:bg=>:grass}},
          6=>
-          {0=>{:bg=>:grass},
+          {0=>{:bg=>:grass, :fg=>:tree},
            1=>{:bg=>:grass},
            2=>{:bg=>:grass},
-           3=>{:bg=>:grass},
+           3=>{:bg=>:gravel},
            4=>{:bg=>:grass},
            5=>{:bg=>:grass},
            6=>{:bg=>:grass},
@@ -121,8 +121,8 @@ describe "find_path(from, to, map)" do
          7=>
           {0=>{:bg=>:grass},
            1=>{:bg=>:grass},
-           2=>{:bg=>:grass},
-           3=>{:bg=>:grass},
+           2=>{:bg=>:gravel},
+           3=>{:bg=>:gravel},
            4=>{:bg=>:grass},
            5=>{:bg=>:grass},
            6=>{:bg=>:grass},
@@ -159,9 +159,10 @@ describe "find_path(from, to, map)" do
   end
   it "should find optimized path" do
     find_path([0,0],[0,5],@map).should==
-      [:right, :right, :down, :down, :left, :left, :down, :down, :down]
+      [:right, :right, :down, :down, :down, :left, :left, :down, :down]
   end
   it "should find optimized path" do
-    find_path([6,0],[1,2],@map).should== [:down, :left, :left, :left, :left, :down, :left]
+    find_path([7,0],[1,2],@map).should==
+      [:down, :down, :down, :left, :left, :left, :left, :left, :left, :up]
   end
 end
