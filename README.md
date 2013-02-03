@@ -23,14 +23,17 @@ supply chain.
 
 ## Todo
 
-* Robots should avoid obstacles
-* Robots should optimise to fastest route
 * Game should run on Windows (it might already but test it)
 * refactor
 * collision detection
 
+* Robots should optimise to fastest route
 
 ## Changelog
+
+### 3/2 11:10
+* Path optimiser
+* Robots avoids obstacles
 
 ### 2/2 22:00
 * sites produce on given producerate
