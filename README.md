@@ -30,6 +30,9 @@ supply chain.
 
 ## Changelog
 
+### 3/2 14:30
+* Robots gets godds from site with most goods
+
 ### 3/2 14:00
 * Robots takes fastest route
 

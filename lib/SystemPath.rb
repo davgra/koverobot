@@ -32,7 +32,11 @@ class SystemPath < System
               yards.push [yard_pos.x,yard_pos.y] if yard[:produce]
             end
           end
-          stop = yards[rand yards.size]
+          yards.map! do |x,y|
+            yard = @manager.labled_component([x,y], CYard)
+            [yard[:stock][yard[:produce]],[x,y]]
+          end
+          stock, stop = yards.max
           path.directions = find_path(start,stop,map.map)
           target.speed = 0.0009+0.0001*rand(2)
         end
