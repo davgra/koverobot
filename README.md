@@ -4,6 +4,10 @@ A little game written in jruby using lwjgl and slick2d.
 
 ## Usage
 
+Download with:
+
+    git clone https://github.com/davgra/koverobot.git
+
 in linux you have to:
 
     export LD_LIBRARY_PATH=./lib/java/
