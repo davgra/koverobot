@@ -24,10 +24,10 @@ class SystemInput < System
     my = input.get_mouse_y/settings.zoom+cy
     tx,ty = pix2tile(mx,my)
     tx-=4;ty-=3
-    if input.is_mouse_pressed(0)
+    if input.is_mouse_button_down(0)
       map[tx,ty][:bg] = :gravel if map[tx,ty]
     end
-    if input.is_mouse_pressed(1)
+    if input.is_mouse_button_down(1)
       map[tx,ty][:bg] = :grass if map[tx,ty]
     end
   end
