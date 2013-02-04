@@ -47,5 +47,8 @@ class RobotGame < BasicGame
 end
 
 app = AppGameContainer.new(RobotGame.new('KoveRobot'))
-app.set_display_mode(1200, 760, false)
+x,y=(ARGV.shift || "").split("x")
+x=800 unless x.to_i > 10
+y=600 unless y.to_i > 10
+app.set_display_mode(x.to_i, y.to_i, false)
 app.start

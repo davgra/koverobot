@@ -17,6 +17,12 @@ unless you use rvm, in which case you just run:
 
     ruby game.rb
 
+### command line option
+
+you can set window size by:
+
+    ruby game.rb 800x600
+
 ## Gameplay
 
 In the game world there is a number of factories and cities. These
@@ -44,8 +50,10 @@ These are the keys to use:
 * refactor
 * collision detection
 
-
 ## Changelog
+
+### 4/2
+* set window size via command line option eg. 800x600
 
 ### 3/2 14:30
 * Robots gets godds from site with most goods
