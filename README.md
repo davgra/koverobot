@@ -49,6 +49,8 @@ These are the keys to use:
 * Game should run on Windows (it might already but test it)
 * refactor
 * collision detection
+* random map generator
+* zoom on mousewheel
 
 ## Changelog
 
