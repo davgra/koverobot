@@ -11,3 +11,4 @@ game_default.yaml
 tmp/
 resources/tmp/
 spec/tmp
+savegame.yaml

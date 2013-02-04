@@ -1,4 +1,4 @@
-QUIT_FILENAME = 'tmp/savegame.yaml'
+QUIT_FILENAME = 'savegame.yaml'
 
 class SystemQuit < System
   def game_tick(container,delta)
