@@ -44,6 +44,11 @@ class RobotGame < BasicGame
   def render(container, graphics)
     @render_system.render(container, graphics)
   end
+
+  def mouseWheelMoved(change)
+    settings = @manager.labled_component(:settings, CSettings)
+    settings.zoom += 0.1*change/120
+  end
 end
 
 app = AppGameContainer.new(RobotGame.new('KoveRobot'))

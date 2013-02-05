@@ -50,9 +50,11 @@ These are the keys to use:
 * refactor
 * collision detection
 * random map generator
-* zoom on mousewheel
 
 ## Changelog
+
+### 5/2
+* zoom on mousewheel
 
 ### 4/2
 * set window size via command line option eg. 800x600
