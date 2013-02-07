@@ -11,7 +11,6 @@ class SystemMove < System
       dy = target.y-pos.y
       r,t = r2p(dx,dy)
       move = target.speed*delta*resistance[groundtype]
-      move *= 5 if container.get_input.is_key_down(Input::KEY_SPACE)
       if r < move
         dirs = @manager.component(e, CPath).directions
         sprite = @manager.component(e, CSprite)
