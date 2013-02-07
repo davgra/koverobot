@@ -34,4 +34,32 @@ class CMap
     end
     map
   end
+  def generate_random
+    k = keys
+    nr = k.size/100+1
+    nr.times do
+      x,y = k[rand(k.size)]
+      @map[x][y][:fg] = :factory
+      x,y = k[rand(k.size)]
+      @map[x][y][:fg] = :home
+      x,y = k[rand(k.size)]
+      @map[x][y][:fg] = :mine
+      x,y = k[rand(k.size)]
+      @map[x][y][:fg] = :tree
+    end
+  end
+
+  def to_s2
+    str = ""
+    keys.sort.each_with_index do |a,i|
+      y,x=a
+      bg=Hash[:grass, ".", :gravel, "-"]
+      fg=Hash[:factory, "F", :mine, "M", :tree, "T", :home, "H"]
+      c = bg[@map[y][x][:bg]]
+      c = fg[@map[y][x][:fg]] if @map[y][x][:fg]
+      str += c
+      str += "\n" if ((i+1) % @map.size) == 0
+    end
+    str
+  end
 end

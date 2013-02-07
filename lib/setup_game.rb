@@ -5,6 +5,7 @@ def setup_game(manager)
     :restart=>Input::KEY_R,
     :save=>Input::KEY_S,
     :load=>Input::KEY_L,
+    :new=>Input::KEY_N,
     :print=>Input::KEY_P }))
 
   yards = {

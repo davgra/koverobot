@@ -10,4 +10,12 @@ describe CMap do
     @map = CMap.new([3,2])
     @map[1,1][:bg].should == :grass
   end
+  it "should return keys" do
+    @map = CMap.new([3,2])
+  end
+  it "should print map" do
+    @map = CMap.new([3,2])
+    pp @map
+    @map.to_s2.should == "...\n...\n"
+  end
 end

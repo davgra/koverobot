@@ -15,6 +15,12 @@ class SystemQuit < System
         @manager.clear
         setup_game @manager
       end
+      if container.get_input.is_key_pressed(input.key[:new])
+        puts "random game."
+        map = @manager.labled_component(:map, CMap)
+        map.map = map.create_rect_map(11,8)
+        map.generate_random
+      end
       if container.get_input.is_key_pressed(input.key[:save])
         puts "saveing: ",QUIT_FILENAME
         @manager.save(QUIT_FILENAME)
@@ -25,6 +31,8 @@ class SystemQuit < System
       end
       if container.get_input.is_key_pressed(input.key[:print])
         pp @manager
+        map = @manager.labled_component(:map, CMap)
+        puts map.to_s2
       end
     end
   end
