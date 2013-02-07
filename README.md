@@ -47,8 +47,10 @@ These are the keys to use:
 ## Todo
 
 * Game should run on Windows (it might already but test it)
-* refactor
+  or wrap as a jar to run on mac and windows.
 * collision detection
+* center zoom on cursor when zooming with mouse
+
 * random map generator
 
 ## Changelog
